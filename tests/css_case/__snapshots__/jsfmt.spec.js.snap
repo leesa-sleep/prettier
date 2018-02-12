@@ -2,8 +2,87 @@
 
 exports[`case.css 1`] = `
 @custom-media --KeepName (MIN-WIDTH: 500PX);
+
+TABLE {}
+
+/* apply a dashed border to all unresolved elements */
+:unresolved {
+    border: 1px dashed red;
+    display: inline-block;
+}
+
+/* x-panel's that are unresolved are red */
+x-panel:unresolved {
+    color: red;
+}
+
+/* once the definition of x-panel is registered, it becomes green */
+x-panel {
+    color: green;
+    display: block;
+    padding: 5px;
+    display: block;
+}
+
+:host {
+    all: initial;
+    display: block;
+    contain: content;
+    text-align: center;
+    background: linear-gradient(to left, hotpink, transparent);
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 8px;
+    transition: transform .2s ease-out;
+}
+:host([hidden]) {
+    display: none;
+}
+:host(:hover) {
+    transform: scale(1.1);
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @custom-media --KeepName (min-width: 500px);
+
+table {
+}
+
+/* apply a dashed border to all unresolved elements */
+:unresolved {
+  border: 1px dashed red;
+  display: inline-block;
+}
+
+/* x-panel's that are unresolved are red */
+x-panel:unresolved {
+  color: red;
+}
+
+/* once the definition of x-panel is registered, it becomes green */
+x-panel {
+  color: green;
+  display: block;
+  padding: 5px;
+  display: block;
+}
+
+:host {
+  all: initial;
+  display: block;
+  contain: content;
+  text-align: center;
+  background: linear-gradient(to left, hotpink, transparent);
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 8px;
+  transition: transform 0.2s ease-out;
+}
+:host([hidden]) {
+  display: none;
+}
+:host(:hover) {
+  transform: scale(1.1);
+}
 
 `;
 
@@ -127,6 +206,8 @@ $KeepScssVar: val;
     margin-top: 100px;
   }
 }
+
+TABLE {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Convention in this test file:
 // - The case should be preserved for things prefixed with "Keep".
@@ -137,7 +218,7 @@ $KeepScssVar: val;
 
 @import Keep;
 
-HTML#KeepId.KeepClass,
+html#KeepId.KeepClass,
 a[HREF="KeepAttrValue"]:hover::first-letter,
 svg[viewBox] linearGradient,
 :not(:nth-child(2n + 1)) {
@@ -159,7 +240,7 @@ svg[viewBox] linearGradient,
 }
 
 @keyframes KeepAnimationName {
-  FROM {
+  from {
     prop: val;
   }
 
@@ -167,7 +248,7 @@ svg[viewBox] linearGradient,
     prop: val;
   }
 
-  TO {
+  to {
     prop: val;
   }
 }
@@ -197,7 +278,7 @@ $KeepScssVar: val;
     prop: val;
   }
 
-  &Keep & Element {
+  &Keep & element {
     prop: val;
   }
 
@@ -233,27 +314,30 @@ $KeepScssVar: val;
 }
 
 @keyframes identifier {
-  FROM {
+  from {
     margin-top: 50px;
   }
   50% {
     margin-top: 150px;
   }
-  TO {
+  to {
     margin-top: 100px;
   }
 }
 
 @-webkit-keyframes float-up {
-  FROM {
+  from {
     margin-top: 50px;
   }
   50% {
     margin-top: 150px;
   }
-  TO {
+  to {
     margin-top: 100px;
   }
+}
+
+table {
 }
 
 `;
@@ -380,6 +464,8 @@ $KeepTopLevelVar: val;
     margin-top: 100px;
   }
 }
+
+TABLE {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Convention in this test file:
 // - The case should be preserved for things prefixed with "Keep".
@@ -389,7 +475,7 @@ $KeepTopLevelVar: val;
 
 @import Keep;
 
-HTML#KeepId.KeepClass,
+html#KeepId.KeepClass,
 a[HREF="KeepAttrValue"]:hover::first-letter,
 svg[viewBox] linearGradient,
 :not(:nth-child(2n + 1)) {
@@ -411,7 +497,7 @@ svg[viewBox] linearGradient,
 }
 
 @keyframes KeepAnimationName {
-  FROM {
+  from {
     prop: val;
   }
 
@@ -421,7 +507,7 @@ svg[viewBox] linearGradient,
     prop: val;
   }
 
-  TO {
+  to {
     prop: val;
   }
 }
@@ -453,7 +539,7 @@ $KeepTopLevelVar: val;
     prop: val;
   }
 
-  &Keep & Element {
+  &Keep & element {
     prop: val;
   }
 
@@ -483,27 +569,30 @@ $KeepTopLevelVar: val;
 }
 
 @keyframes identifier {
-  FROM {
+  from {
     margin-top: 50px;
   }
   50% {
     margin-top: 150px;
   }
-  TO {
+  to {
     margin-top: 100px;
   }
 }
 
 @-webkit-keyframes float-up {
-  FROM {
+  from {
     margin-top: 50px;
   }
   50% {
     margin-top: 150px;
   }
-  TO {
+  to {
     margin-top: 100px;
   }
+}
+
+table {
 }
 
 `;

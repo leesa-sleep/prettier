@@ -1,5 +1,6 @@
 "use strict";
 
+const htmlTagNames = require("html-tag-names");
 const clean = require("./clean");
 const privateUtil = require("../common/util");
 const sharedUtil = require("../common/util-shared");
@@ -309,7 +310,18 @@ function genericPrint(path, options, print) {
       return adjustStrings(node.value, options);
     }
     case "selector-tag": {
-      return adjustNumbers(node.value);
+      const lowercasedValue = node.value.toLowerCase();
+      const atRuleAncestorNode = getAncestorNode(path, "css-atrule");
+      const isKeyframeKeywords =
+        atRuleAncestorNode &&
+        atRuleAncestorNode.name &&
+        atRuleAncestorNode.name.toLowerCase().endsWith("keyframes") &&
+        ["from", "to"].indexOf(lowercasedValue) !== -1;
+      const isHTMLTag = htmlTagNames.indexOf(lowercasedValue) !== -1;
+
+      return adjustNumbers(
+        isHTMLTag || isKeyframeKeywords ? lowercasedValue : node.value
+      );
     }
     case "selector-id": {
       return concat(["#", node.value]);
